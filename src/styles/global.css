@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  themes: yoru --default;
+  themes: yoku --default;
   logs: false;
 }
 
 @plugin "daisyui/theme" {
-  name: "yoru";
+  name: "yoku";
   default: true;
   prefersdark: true;
   color-scheme: dark;
@@ -43,8 +43,8 @@
 }
 
 @theme {
-  --font-sans: "Instrument Sans", system-ui, -apple-system, "Helvetica Neue", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans: var(--font-instrument-sans);
+  --font-mono: var(--font-jetbrains-mono);
   --color-muted: #8b8b94;
   --color-dim: #5c5c66;
   --color-line: rgb(255 255 255 / 0.08);

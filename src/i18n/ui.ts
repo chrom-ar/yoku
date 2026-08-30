@@ -1,11 +1,11 @@
-export const EMAIL = 'yoru@chrom.ar';
+export const EMAIL = 'yoku@chrom.ar';
 
 export const locales = ['en', 'es'] as const;
 export type Locale = (typeof locales)[number];
 
 export const ui = {
   en: {
-    title: 'Yoru — Manual penetration testing',
+    title: 'Yoku — Manual penetration testing',
     description: 'Manual pentesting. Findings your engineers can fix — not a scanner export.',
     contact: 'Contact',
     switchLabel: 'ES',
@@ -19,7 +19,7 @@ export const ui = {
     sphereLabel: 'Rotating sphere made of code glyphs',
   },
   es: {
-    title: 'Yoru — Pruebas de penetración manuales',
+    title: 'Yoku — Pruebas de penetración manuales',
     description: 'Pentesting manual. Hallazgos que tus ingenieros pueden corregir — no el volcado de un escáner.',
     contact: 'Contacto',
     switchLabel: 'EN',

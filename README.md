@@ -1,15 +1,15 @@
-# Yoru — landing page
+# Yoku — landing page
 
-Single-screen landing page for Yoru (manual penetration testing), in English (`/`) and Spanish (`/es/`).
+Single-screen landing page for Yoku (manual penetration testing), in English (`/`) and Spanish (`/es/`).
 
-Built with [Astro](https://astro.build), Tailwind CSS v4 and DaisyUI 5. Deployed to GitHub Pages at https://yoru.chrom.ar via the workflow in `.github/workflows/deploy.yml`.
+Built with [Astro](https://astro.build), Tailwind CSS v4 and DaisyUI 5. Deployed to GitHub Pages at https://yoku.chrom.ar via the workflow in `.github/workflows/deploy.yml`.
 
 ## Structure
 
 - `src/pages/index.astro`, `src/pages/es/index.astro` — the two locale entry points, both render `Landing.astro`.
 - `src/components/` — `Nav`, `Hero`, `GlyphSphere` (the Canvas 2D glyph sphere: hover to spin faster, click to knock glyphs loose), `Prompt` (terminal-style footer).
 - `src/i18n/ui.ts` — all copy for both languages plus the contact email.
-- `src/styles/global.css` — Tailwind + the custom `yoru` DaisyUI theme (palette, fonts).
+- `src/styles/global.css` — Tailwind + the custom `yoku` DaisyUI theme (palette, fonts).
 - `public/favicon.svg`, `public/CNAME`.
 
 ## Commands
