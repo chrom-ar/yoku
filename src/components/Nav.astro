@@ -1,0 +1,25 @@
+---
+import { t, mailto, localePath, otherLocale, EMAIL, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale);
+const other = otherLocale(locale);
+---
+
+<header class="navbar min-h-0 h-14 md:h-16 px-5 md:px-16 border-b border-line justify-between gap-4">
+  <a class="flex items-center gap-2.5 font-mono text-sm md:text-[15px] font-bold tracking-[0.1em]" href={localePath(locale)}>
+    <svg class="text-primary" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+      <rect width="10" height="10" fill="currentColor"></rect>
+    </svg>
+    <span>YORU</span>
+  </a>
+  <nav class="flex items-center gap-5 md:gap-8 font-mono text-[13px] tracking-[0.02em]">
+    <a class="link link-hover text-muted hover:text-base-content hidden md:inline" href={`mailto:${EMAIL}`}>{s.contact}</a>
+    <a class="link link-hover text-muted hover:text-base-content" href={localePath(other)} hreflang={other} lang={other}>{s.switchLabel}</a>
+  </nav>
+  <a class="btn btn-primary btn-sm md:btn-md font-mono font-semibold" href={mailto(s.ctaSubject)}>{s.cta}</a>
+</header>

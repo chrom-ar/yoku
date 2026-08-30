@@ -1,0 +1,161 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="flex items-center justify-center w-[300px] h-[300px] mx-auto md:w-[520px] md:h-[520px] xl:w-[640px] xl:h-[640px] md:justify-self-center lg:justify-self-end">
+  <canvas id="glyph-sphere" class="block w-full h-full cursor-crosshair" width="640" height="640" role="img" aria-label={label}></canvas>
+</div>
+
+<script>
+  type Pt = {
+    x: number; y: number; z: number; ch: string; hot: boolean;
+    shed: number; sx: number; sy: number; t: number;
+    vx: number; vy: number; ox: number; oy: number; a: number; s: number;
+  };
+
+  const GLYPHS =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ΣΩΔΛΘΦΨΞΠλπμσξζφψω∑∂∞≈≠≤≥{}[]()<>/\\|;:=+-*&%$#@!?~^§¶€£¥';
+  const GOLD = Math.PI * (3 - Math.sqrt(5));
+  const FONT = '"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace';
+
+  function hexToRgb(hex: string): string {
+    const m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(hex.trim());
+    if (!m) return '243,185,66';
+    let s = m[1];
+    if (s.length === 3) s = s[0] + s[0] + s[1] + s[1] + s[2] + s[2];
+    const n = parseInt(s, 16);
+    return `${(n >> 16) & 255},${(n >> 8) & 255},${n & 255}`;
+  }
+
+  function createGlyphSphere(canvas: HTMLCanvasElement, opts: { accent: string; count: number; speed: number }) {
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const S = {
+      pts: [] as Pt[], rotY: 0.6, tilt: -0.42, vel: 0, hover: false, raf: 0, last: 0,
+      visible: true, hidden: false, w: 0, h: 0, dpr: 1,
+      accent: hexToRgb(opts.accent), speed: opts.speed,
+    };
+
+    function build(n: number) {
+      const pts: Pt[] = [];
+      for (let i = 0; i < n; i++) {
+        const y = 1 - (i / Math.max(1, n - 1)) * 2;
+        const r = Math.sqrt(Math.max(0, 1 - y * y));
+        const th = GOLD * i;
+        pts.push({
+          x: Math.cos(th) * r, y, z: Math.sin(th) * r,
+          ch: GLYPHS.charAt((Math.random() * GLYPHS.length) | 0),
+          hot: Math.random() < 0.035,
+          shed: 0, sx: 0, sy: 0, t: 0, vx: 0, vy: 0, ox: 0, oy: 0, a: 1, s: 1,
+        });
+      }
+      S.pts = pts;
+    }
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      const w = rect.width || canvas.clientWidth || 600;
+      const h = rect.height || canvas.clientHeight || 600;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      if (w === S.w && h === S.h && dpr === S.dpr) return;
+      S.w = w; S.h = h; S.dpr = dpr;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+    }
+
+    function frame(now: number) {
+      S.raf = requestAnimationFrame(frame);
+      if (!S.visible || S.hidden) { S.last = now; return; }
+      const dt = Math.min(0.05, (now - (S.last || now)) / 1000);
+      S.last = now;
+      resize();
+      const base = reduce ? 0.04 : 0.22 * S.speed;
+      const target = S.hover && !reduce ? base * 3.4 : base;
+      S.vel += (target - S.vel) * Math.min(1, dt * 4);
+      S.rotY += S.vel * dt;
+      S.tilt = -0.42 + Math.sin(now / 5000) * 0.07;
+      const { w, h, dpr } = S;
+      const cx = w / 2, cy = h / 2, R = Math.min(w, h) * 0.46;
+      const cosY = Math.cos(S.rotY), sinY = Math.sin(S.rotY), cosX = Math.cos(S.tilt), sinX = Math.sin(S.tilt);
+      const pts = S.pts;
+      for (const p of pts) {
+        const x = p.x * cosY + p.z * sinY;
+        let z = -p.x * sinY + p.z * cosY;
+        const y = p.y * cosX - z * sinX;
+        z = p.y * sinX + z * cosX;
+        p.t = z; p.sx = cx + x * R; p.sy = cy - y * R;
+        if (p.shed > 0) {
+          p.shed += dt;
+          if (p.shed < 0.8) {
+            p.ox += p.vx * dt; p.oy += p.vy * dt; p.vy += 320 * dt;
+            p.a = 1 - p.shed / 0.8; p.s = 1 + p.shed * 0.5;
+          } else if (p.shed < 1.6) {
+            p.a = 0; p.s = 0.3; p.ox = 0; p.oy = 0;
+          } else if (p.shed < 2.4) {
+            const k = (p.shed - 1.6) / 0.8;
+            p.a = k; p.s = 0.3 + 0.7 * k; p.ox = 0; p.oy = 0;
+          } else {
+            p.shed = 0; p.a = 1; p.s = 1; p.ox = 0; p.oy = 0;
+          }
+        }
+      }
+      pts.sort((a, b) => a.t - b.t);
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx!.clearRect(0, 0, w, h);
+      ctx!.textAlign = 'center';
+      ctx!.textBaseline = 'middle';
+      const baseSize = Math.max(8, R * 0.052);
+      let lastBucket = -1;
+      for (const p of pts) {
+        const d = (p.t + 1) / 2;
+        let alpha = 0.05 + 0.95 * Math.pow(d, 1.9);
+        let size = baseSize * (0.6 + 0.55 * d);
+        let ox = 0, oy = 0;
+        if (p.shed > 0) { alpha *= p.a; size *= p.s; ox = p.ox; oy = p.oy; }
+        if (alpha < 0.02) continue;
+        const bucket = Math.round(size * 2);
+        if (bucket !== lastBucket) { ctx!.font = `500 ${bucket / 2}px ${FONT}`; lastBucket = bucket; }
+        ctx!.fillStyle = p.hot
+          ? `rgba(${S.accent},${Math.min(1, alpha * 1.2).toFixed(3)})`
+          : `rgba(236,236,240,${alpha.toFixed(3)})`;
+        ctx!.fillText(p.ch, p.sx + ox, p.sy + oy);
+      }
+    }
+
+    canvas.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+      for (const p of S.pts) {
+        if (p.shed > 0 || p.t < 0.1) continue;
+        const dx = p.sx - mx, dy = p.sy - my, dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 70) {
+          const f = 1 - dist / 70;
+          const ang = Math.atan2(dy, dx) + (Math.random() - 0.5) * 0.7;
+          const sp = 120 + 280 * f + Math.random() * 90;
+          p.shed = 0.0001; p.vx = Math.cos(ang) * sp; p.vy = Math.sin(ang) * sp - 70;
+          p.ox = 0; p.oy = 0; p.a = 1; p.s = 1;
+        }
+      }
+    });
+    canvas.addEventListener('pointerenter', () => { S.hover = true; });
+    canvas.addEventListener('pointerleave', () => { S.hover = false; });
+    document.addEventListener('visibilitychange', () => { S.hidden = document.hidden; });
+    new ResizeObserver(() => { S.w = 0; }).observe(canvas);
+    new IntersectionObserver((es) => { S.visible = es[0]?.isIntersecting ?? true; }).observe(canvas);
+
+    build(Math.max(50, Math.min(4000, opts.count)));
+    S.raf = requestAnimationFrame(frame);
+  }
+
+  const canvas = document.getElementById('glyph-sphere');
+  if (canvas instanceof HTMLCanvasElement) {
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#f3b942';
+    const small = window.matchMedia('(max-width: 767px)').matches;
+    createGlyphSphere(canvas, { accent, count: small ? 700 : 1200, speed: 1 });
+  }
+</script>

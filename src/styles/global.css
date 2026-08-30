@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: yoru --default;
+  logs: false;
+}
+
+@plugin "daisyui/theme" {
+  name: "yoru";
+  default: true;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: #0a0a0c;
+  --color-base-200: #111114;
+  --color-base-300: #1a1a1f;
+  --color-base-content: #ededf0;
+  --color-primary: #f3b942;
+  --color-primary-content: #0a0a0c;
+  --color-secondary: #8b8b94;
+  --color-secondary-content: #0a0a0c;
+  --color-accent: #f3b942;
+  --color-accent-content: #0a0a0c;
+  --color-neutral: #1a1a1f;
+  --color-neutral-content: #ededf0;
+  --color-info: #6aa9ff;
+  --color-info-content: #0a0a0c;
+  --color-success: #4ade80;
+  --color-success-content: #0a0a0c;
+  --color-warning: #f3b942;
+  --color-warning-content: #0a0a0c;
+  --color-error: #f87171;
+  --color-error-content: #0a0a0c;
+
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme {
+  --font-sans: "Instrument Sans", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --color-muted: #8b8b94;
+  --color-dim: #5c5c66;
+  --color-line: rgb(255 255 255 / 0.08);
+}
+
+html,
+body {
+  background: var(--color-base-100);
+}
+
+body {
+  color: var(--color-base-content);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink { animation: none; }
+}
