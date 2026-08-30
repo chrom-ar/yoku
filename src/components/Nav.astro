@@ -19,7 +19,16 @@ const other = otherLocale(locale);
   </a>
   <nav class="flex items-center gap-5 md:gap-8 font-mono text-[13px] tracking-[0.02em]">
     <a class="link link-hover text-muted hover:text-base-content hidden md:inline" href={`mailto:${EMAIL}`}>{s.contact}</a>
-    <a class="link link-hover text-muted hover:text-base-content" href={localePath(other)} hreflang={other} lang={other}>{s.switchLabel}</a>
+    <a class="link link-hover text-muted hover:text-base-content" href={localePath(other)} hreflang={other} lang={other} data-lang={other}>{s.switchLabel}</a>
   </nav>
   <a class="btn btn-primary btn-sm md:btn-md font-mono font-semibold" href={mailto(s.ctaSubject)}>{s.cta}</a>
 </header>
+
+<script>
+  // Remember an explicit language choice so LangRedirect respects it.
+  for (const a of document.querySelectorAll<HTMLAnchorElement>('a[data-lang]')) {
+    a.addEventListener('click', () => {
+      try { localStorage.setItem('lang', a.dataset.lang!); } catch {}
+    });
+  }
+</script>

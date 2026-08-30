@@ -1,0 +1,16 @@
+---
+// Runs inline in the <head> of the default-locale page only. Sends visitors
+// whose first browser language is Spanish to /es/, unless they have already
+// picked a language with the EN/ES switch (stored by LangSwitch in Nav).
+---
+
+<script is:inline>
+  (function () {
+    try {
+      var pref = localStorage.getItem('lang');
+      var first = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
+      var target = pref || (first.indexOf('es') === 0 ? 'es' : 'en');
+      if (target === 'es' && location.pathname === '/') location.replace('/es/' + location.search + location.hash);
+    } catch (e) {}
+  })();
+</script>

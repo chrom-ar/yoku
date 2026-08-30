@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { Font } from 'astro:assets';
+import LangRedirect from '../components/LangRedirect.astro';
 import { locales, localePath, type Locale } from '../i18n/ui';
 
 interface Props {
@@ -13,8 +14,8 @@ const { locale, title, description } = Astro.props;
 const site = Astro.site ?? new URL('https://yoku.chrom.ar');
 const canonical = new URL(localePath(locale), site);
 const ogImage = new URL(`/og-${locale}.png`, site);
-const ogLocale = { en: 'en_US', es: 'es_ES' }[locale];
-const ogAlternate = locales.filter((l) => l !== locale).map((l) => ({ en: 'en_US', es: 'es_ES' })[l]);
+const ogLocale = { en: 'en_US', es: 'es_AR' }[locale];
+const ogAlternate = locales.filter((l) => l !== locale).map((l) => ({ en: 'en_US', es: 'es_AR' })[l]);
 ---
 
 <!doctype html>
@@ -23,6 +24,7 @@ const ogAlternate = locales.filter((l) => l !== locale).map((l) => ({ en: 'en_US
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    {locale === 'en' && <LangRedirect />}
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a0a0c" />
