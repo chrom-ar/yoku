@@ -19,15 +19,11 @@ const H = 630;
 
 const copy = {
   en: {
-    eyebrow: 'OFFENSIVE SECURITY · PENETRATION TESTING',
     headline: ['We get', 'in first.'],
-    sub: 'Manual pentesting. Findings your engineers can fix — not a scanner export.',
     cta: 'Book an assessment',
   },
   es: {
-    eyebrow: 'SEGURIDAD OFENSIVA · PRUEBAS DE PENETRACIÓN',
     headline: ['Entramos', 'primero.'],
-    sub: 'Pentesting manual. Hallazgos que tus ingenieros pueden corregir — no el volcado de un escáner.',
     cta: 'Agenda una evaluación',
   },
 };
@@ -36,7 +32,6 @@ const fonts = [
   { name: 'JetBrains Mono', weight: 400, data: await readFile(require.resolve('@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff')) },
   { name: 'JetBrains Mono', weight: 600, data: await readFile(require.resolve('@fontsource/jetbrains-mono/files/jetbrains-mono-latin-600-normal.woff')) },
   { name: 'JetBrains Mono', weight: 700, data: await readFile(require.resolve('@fontsource/jetbrains-mono/files/jetbrains-mono-latin-700-normal.woff')) },
-  { name: 'Instrument Sans', weight: 400, data: await readFile(require.resolve('@fontsource/instrument-sans/files/instrument-sans-latin-400-normal.woff')) },
 ];
 
 // Deterministic PRNG so the glyph sphere is identical on every build.
@@ -93,18 +88,28 @@ function sphere({ cx, cy, R, count, seed }) {
 }
 
 function card(t) {
+  const arrow = {
+    type: 'svg',
+    props: {
+      width: 24, height: 24, viewBox: '0 0 16 16', fill: 'none', stroke: BG, strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round',
+      children: [
+        { type: 'path', props: { d: 'M3 8h10' } },
+        { type: 'path', props: { d: 'M9 4l4 4-4 4' } },
+      ],
+    },
+  };
   return {
     type: 'div',
     props: {
-      style: { width: W, height: H, display: 'flex', flexDirection: 'column', background: BG, color: FG, fontFamily: 'JetBrains Mono', position: 'relative' },
+      style: { width: W, height: H, display: 'flex', background: BG, color: FG, fontFamily: 'JetBrains Mono', position: 'relative' },
       children: [
-        ...sphere({ cx: 930, cy: 300, R: 215, count: 700, seed: 20240913 }),
+        ...sphere({ cx: 930, cy: 315, R: 225, count: 700, seed: 20240913 }),
         {
           type: 'div',
           props: {
-            style: { display: 'flex', alignItems: 'center', gap: 14, padding: '44px 64px 0', fontSize: 22, fontWeight: 700, letterSpacing: 2.2 },
+            style: { position: 'absolute', left: 72, top: 60, display: 'flex', alignItems: 'center', gap: 14, fontSize: 24, fontWeight: 700, letterSpacing: 2.4 },
             children: [
-              { type: 'div', props: { style: { width: 14, height: 14, background: ACCENT } } },
+              { type: 'div', props: { style: { width: 15, height: 15, background: ACCENT } } },
               { type: 'span', props: { children: 'YOKU' } },
             ],
           },
@@ -112,69 +117,31 @@ function card(t) {
         {
           type: 'div',
           props: {
-            style: { display: 'flex', flexDirection: 'column', gap: 22, padding: '48px 64px 0', width: 720 },
+            style: { position: 'absolute', left: 72, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 44, width: 640 },
             children: [
               {
                 type: 'div',
                 props: {
-                  style: { display: 'flex', alignItems: 'center', gap: 14, fontSize: 17, letterSpacing: 2, color: MUTED },
-                  children: [
-                    { type: 'div', props: { style: { width: 8, height: 8, borderRadius: 4, background: ACCENT } } },
-                    { type: 'span', props: { children: t.eyebrow } },
-                  ],
-                },
-              },
-              {
-                type: 'div',
-                props: {
-                  style: { display: 'flex', flexDirection: 'column', fontSize: 84, fontWeight: 600, lineHeight: 0.98, letterSpacing: -3 },
+                  style: { display: 'flex', flexDirection: 'column', fontSize: 100, fontWeight: 600, lineHeight: 0.98, letterSpacing: -3.5 },
                   children: t.headline.map((line) => ({ type: 'span', props: { children: line } })),
                 },
               },
               {
                 type: 'div',
-                props: { style: { fontFamily: 'Instrument Sans', fontSize: 24, lineHeight: 1.4, color: '#a1a1aa', width: 560 }, children: t.sub },
-              },
-              {
-                type: 'div',
                 props: {
-                  style: { display: 'flex', alignItems: 'center', gap: 26, marginTop: 6 },
+                  style: { display: 'flex', alignItems: 'center', gap: 28 },
                   children: [
                     {
                       type: 'div',
                       props: {
-                        style: { display: 'flex', alignItems: 'center', gap: 12, height: 56, padding: '0 24px', background: ACCENT, color: BG, borderRadius: 4, fontSize: 21, fontWeight: 600 },
-                        children: [
-                          { type: 'span', props: { children: t.cta } },
-                          {
-                            type: 'svg',
-                            props: {
-                              width: 22, height: 22, viewBox: '0 0 16 16', fill: 'none', stroke: BG, strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round',
-                              children: [
-                                { type: 'path', props: { d: 'M3 8h10' } },
-                                { type: 'path', props: { d: 'M9 4l4 4-4 4' } },
-                              ],
-                            },
-                          },
-                        ],
+                        style: { display: 'flex', alignItems: 'center', gap: 12, height: 60, padding: '0 26px', background: ACCENT, color: BG, borderRadius: 4, fontSize: 22, fontWeight: 600 },
+                        children: [{ type: 'span', props: { children: t.cta } }, arrow],
                       },
                     },
-                    { type: 'span', props: { style: { fontSize: 19, color: MUTED, borderBottom: '1px solid rgba(255,255,255,0.18)', paddingBottom: 2 }, children: EMAIL } },
+                    { type: 'span', props: { style: { fontSize: 20, color: MUTED }, children: EMAIL } },
                   ],
                 },
               },
-            ],
-          },
-        },
-        {
-          type: 'div',
-          props: {
-            style: { position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', gap: 16, padding: '20px 64px', borderTop: `1px solid rgba(255,255,255,0.08)`, fontSize: 17, color: MUTED, letterSpacing: 0.4 },
-            children: [
-              { type: 'span', props: { style: { color: ACCENT }, children: 'yoku@ops:~$' } },
-              { type: 'span', props: { children: 'scope --web --api --cloud --network --red-team' } },
-              { type: 'div', props: { style: { width: 10, height: 19, background: ACCENT } } },
-              { type: 'span', props: { style: { marginLeft: 'auto', color: '#5c5c66' }, children: 'yoku.chrom.ar' } },
             ],
           },
         },
