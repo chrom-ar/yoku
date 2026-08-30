@@ -18,10 +18,10 @@ const other = otherLocale(locale);
     <span>YOKU</span>
   </a>
   <nav class="flex items-center gap-5 md:gap-8 font-mono text-[13px] tracking-[0.02em]">
-    <a class="link link-hover text-muted hover:text-base-content hidden md:inline" href={`mailto:${EMAIL}`}>{s.contact}</a>
+    <a class="link link-hover text-muted hover:text-base-content hidden md:inline" href={`mailto:${EMAIL}`} data-nav="contact">{s.contact}</a>
     <a class="link link-hover text-muted hover:text-base-content" href={localePath(other)} hreflang={other} lang={other} data-lang={other}>{s.switchLabel}</a>
   </nav>
-  <a class="btn btn-primary btn-sm md:btn-md font-mono font-semibold" href={mailto(s.ctaSubject)}>{s.cta}</a>
+  <a class="btn btn-primary btn-sm md:btn-md font-mono font-semibold" href={mailto(s.ctaSubject)} data-nav="cta">{s.cta}</a>
 </header>
 
 <script>

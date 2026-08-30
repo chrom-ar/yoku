@@ -17,6 +17,11 @@ export const ui = {
     sample: 'Request a sample report',
     sampleSubject: 'Sample report request',
     sphereLabel: 'Rotating sphere made of code glyphs',
+    notFoundTitle: 'Yoku — Page not found',
+    notFoundEyebrow: '404 · Not found',
+    notFoundHeadline: 'No route to host.',
+    notFoundSub: 'There is nothing at this address. It may have moved, or it never existed.',
+    notFoundHome: 'Back to the start',
   },
   es: {
     title: 'Yoku — Pruebas de penetración manuales',
@@ -31,6 +36,11 @@ export const ui = {
     sample: 'Solicita un informe de ejemplo',
     sampleSubject: 'Solicitud de informe de ejemplo',
     sphereLabel: 'Esfera giratoria hecha de glifos de código',
+    notFoundTitle: 'Yoku — Página no encontrada',
+    notFoundEyebrow: '404 · No encontrada',
+    notFoundHeadline: 'Sin ruta al host.',
+    notFoundSub: 'No hay nada en esta dirección. Puede que se haya movido, o que nunca haya existido.',
+    notFoundHome: 'Volver al inicio',
   },
 } as const satisfies Record<Locale, Record<string, string>>;
 

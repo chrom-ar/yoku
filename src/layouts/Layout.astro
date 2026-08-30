@@ -8,11 +8,14 @@ interface Props {
   locale: Locale;
   title: string;
   description: string;
+  /** Path used for the canonical URL; defaults to the locale's home. */
+  path?: string;
+  noindex?: boolean;
 }
 
-const { locale, title, description } = Astro.props;
+const { locale, title, description, path = localePath(locale), noindex = false } = Astro.props;
 const site = Astro.site ?? new URL('https://yoku.chrom.ar');
-const canonical = new URL(localePath(locale), site);
+const canonical = new URL(path, site);
 const ogImage = new URL(`/og-${locale}.png`, site);
 const ogLocale = { en: 'en_US', es: 'es_AR' }[locale];
 const ogAlternate = locales.filter((l) => l !== locale).map((l) => ({ en: 'en_US', es: 'es_AR' })[l]);
@@ -28,6 +31,7 @@ const ogAlternate = locales.filter((l) => l !== locale).map((l) => ({ en: 'en_US
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a0a0c" />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonical} />
