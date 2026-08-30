@@ -13,6 +13,7 @@ const BG = '#0a0a0c';
 const FG = '#ededf0';
 const MUTED = '#8b8b94';
 const ACCENT = '#f3b942';
+const EMAIL = 'yoku@chrom.ar';
 const W = 1200;
 const H = 630;
 
@@ -21,11 +22,13 @@ const copy = {
     eyebrow: 'OFFENSIVE SECURITY · PENETRATION TESTING',
     headline: ['We get', 'in first.'],
     sub: 'Manual pentesting. Findings your engineers can fix — not a scanner export.',
+    cta: 'Book an assessment',
   },
   es: {
     eyebrow: 'SEGURIDAD OFENSIVA · PRUEBAS DE PENETRACIÓN',
     headline: ['Entramos', 'primero.'],
     sub: 'Pentesting manual. Hallazgos que tus ingenieros pueden corregir — no el volcado de un escáner.',
+    cta: 'Agenda una evaluación',
   },
 };
 
@@ -109,7 +112,7 @@ function card(t) {
         {
           type: 'div',
           props: {
-            style: { display: 'flex', flexDirection: 'column', gap: 26, padding: '70px 64px 0', width: 720 },
+            style: { display: 'flex', flexDirection: 'column', gap: 22, padding: '48px 64px 0', width: 720 },
             children: [
               {
                 type: 'div',
@@ -124,13 +127,41 @@ function card(t) {
               {
                 type: 'div',
                 props: {
-                  style: { display: 'flex', flexDirection: 'column', fontSize: 92, fontWeight: 600, lineHeight: 0.98, letterSpacing: -3.2 },
+                  style: { display: 'flex', flexDirection: 'column', fontSize: 84, fontWeight: 600, lineHeight: 0.98, letterSpacing: -3 },
                   children: t.headline.map((line) => ({ type: 'span', props: { children: line } })),
                 },
               },
               {
                 type: 'div',
-                props: { style: { fontFamily: 'Instrument Sans', fontSize: 26, lineHeight: 1.45, color: '#a1a1aa', width: 560 }, children: t.sub },
+                props: { style: { fontFamily: 'Instrument Sans', fontSize: 24, lineHeight: 1.4, color: '#a1a1aa', width: 560 }, children: t.sub },
+              },
+              {
+                type: 'div',
+                props: {
+                  style: { display: 'flex', alignItems: 'center', gap: 26, marginTop: 6 },
+                  children: [
+                    {
+                      type: 'div',
+                      props: {
+                        style: { display: 'flex', alignItems: 'center', gap: 12, height: 56, padding: '0 24px', background: ACCENT, color: BG, borderRadius: 4, fontSize: 21, fontWeight: 600 },
+                        children: [
+                          { type: 'span', props: { children: t.cta } },
+                          {
+                            type: 'svg',
+                            props: {
+                              width: 22, height: 22, viewBox: '0 0 16 16', fill: 'none', stroke: BG, strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round',
+                              children: [
+                                { type: 'path', props: { d: 'M3 8h10' } },
+                                { type: 'path', props: { d: 'M9 4l4 4-4 4' } },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    { type: 'span', props: { style: { fontSize: 19, color: MUTED, borderBottom: '1px solid rgba(255,255,255,0.18)', paddingBottom: 2 }, children: EMAIL } },
+                  ],
+                },
               },
             ],
           },
