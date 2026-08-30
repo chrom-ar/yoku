@@ -68,9 +68,17 @@ const { label } = Astro.props;
       canvas.height = Math.round(h * dpr);
     }
 
+    // Cap the frame rate: 60 fps is plenty for this spin speed, and 120 Hz
+    // displays would otherwise do twice the work for no visible difference.
+    // With reduced motion the sphere barely moves, so 20 fps is enough.
+    const MIN_FRAME_MS = reduce ? 1000 / 20 : 1000 / 60;
+    const accentFill = `rgb(${S.accent})`;
+    const glyphFill = 'rgb(236,236,240)';
+
     function frame(now: number) {
       S.raf = requestAnimationFrame(frame);
       if (!S.visible || S.hidden) { S.last = now; return; }
+      if (now - S.last < MIN_FRAME_MS - 1) return;
       const dt = Math.min(0.05, (now - (S.last || now)) / 1000);
       S.last = now;
       resize();
@@ -120,11 +128,11 @@ const { label } = Astro.props;
         if (alpha < 0.02) continue;
         const bucket = Math.round(size * 2);
         if (bucket !== lastBucket) { ctx!.font = `500 ${bucket / 2}px ${FONT}`; lastBucket = bucket; }
-        ctx!.fillStyle = p.hot
-          ? `rgba(${S.accent},${Math.min(1, alpha * 1.2).toFixed(3)})`
-          : `rgba(236,236,240,${alpha.toFixed(3)})`;
+        ctx!.fillStyle = p.hot ? accentFill : glyphFill;
+        ctx!.globalAlpha = p.hot ? Math.min(1, alpha * 1.2) : alpha;
         ctx!.fillText(p.ch, p.sx + ox, p.sy + oy);
       }
+      ctx!.globalAlpha = 1;
     }
 
     canvas.addEventListener('click', (e) => {
