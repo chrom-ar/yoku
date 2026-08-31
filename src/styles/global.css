@@ -46,7 +46,7 @@
   --font-sans: var(--font-instrument-sans);
   --font-mono: var(--font-jetbrains-mono);
   --color-muted: #8b8b94;
-  --color-dim: #5c5c66;
+  --color-dim: #7f7f88; /* darkest tone that passes AA 4.5:1 on both page and card backgrounds */
   --color-soft: #a1a1aa;
   --color-body: #d4d4d8;
   --color-line: rgb(255 255 255 / 0.08);
