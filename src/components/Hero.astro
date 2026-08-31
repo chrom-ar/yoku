@@ -1,4 +1,5 @@
 ---
+import Arrow from './Arrow.astro';
 import GlyphSphere from './GlyphSphere.astro';
 import { t, mailto, type Locale } from '../i18n/ui';
 
@@ -10,7 +11,7 @@ const { locale } = Astro.props;
 const s = t(locale);
 ---
 
-<main class="flex-1 flex flex-col gap-6 px-5 pt-8 pb-5 md:grid md:grid-cols-1 lg:grid-cols-[minmax(0,1fr)_520px] xl:grid-cols-[minmax(0,1fr)_640px] md:gap-12 md:items-center md:px-16 md:py-10">
+<section class="flex flex-col gap-5 px-5 pt-9 pb-7 md:grid md:grid-cols-1 lg:grid-cols-[minmax(0,1fr)_520px] xl:grid-cols-[minmax(0,1fr)_640px] md:gap-12 md:items-center md:px-16 md:pt-16 md:pb-12">
   <div class="flex flex-col gap-5 md:gap-7 md:max-w-[620px]">
     <p class="flex items-center gap-2.5 md:gap-3 m-0 font-mono text-[11px] md:text-xs tracking-[0.12em] uppercase text-muted">
       <svg class="text-primary" width="6" height="6" viewBox="0 0 6 6" aria-hidden="true">
@@ -18,18 +19,15 @@ const s = t(locale);
       </svg>
       <span>{s.eyebrow}</span>
     </p>
-    <h1 class="m-0 font-mono font-semibold text-5xl md:text-[64px] xl:text-[80px] leading-[0.98] tracking-[-0.035em] text-balance">{s.headline}</h1>
-    <p class="m-0 text-base md:text-[19px] leading-normal md:leading-[1.55] text-[#a1a1aa] max-w-[540px] text-pretty">{s.sub}</p>
+    <h1 class="m-0 font-mono font-semibold text-[46px] md:text-[64px] xl:text-[80px] leading-[0.98] tracking-[-0.035em] text-balance">{s.headline}</h1>
+    <p class="m-0 text-base md:text-[19px] leading-normal md:leading-[1.55] text-soft max-w-[540px] text-pretty">{s.sub}</p>
     <div class="flex flex-col items-stretch gap-3.5 md:flex-row md:items-center md:gap-6 md:flex-wrap mt-2">
       <a class="btn btn-primary btn-lg font-mono font-semibold justify-center" href={mailto(s.ctaSubject)}>
         <span>{s.cta}</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M3 8h10"></path>
-          <path d="M9 4l4 4-4 4"></path>
-        </svg>
+        <Arrow />
       </a>
-      <a class="link link-hover self-start font-mono text-[13px] md:text-sm text-muted hover:text-base-content" href={mailto(s.sampleSubject)}>{s.sample}</a>
+      <a class="link link-hover self-start font-mono text-[13px] md:text-sm text-muted hover:text-base-content" href="#report">{s.seeReport}</a>
     </div>
   </div>
   <GlyphSphere label={s.sphereLabel} />
-</main>
+</section>

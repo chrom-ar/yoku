@@ -19,11 +19,11 @@ const H = 630;
 
 const copy = {
   en: {
-    headline: ['We get', 'in first.'],
+    headline: ['An attacker', 'on your side.'],
     cta: 'Book an assessment',
   },
   es: {
-    headline: ['Entramos', 'primero.'],
+    headline: ['Un atacante', 'de tu lado.'],
     cta: 'Agenda una evaluación',
   },
 };
@@ -122,7 +122,7 @@ function card(t) {
               {
                 type: 'div',
                 props: {
-                  style: { display: 'flex', flexDirection: 'column', fontSize: 100, fontWeight: 600, lineHeight: 0.98, letterSpacing: -3.5 },
+                  style: { display: 'flex', flexDirection: 'column', fontSize: 80, fontWeight: 600, lineHeight: 1.02, letterSpacing: -2.8 },
                   children: t.headline.map((line) => ({ type: 'span', props: { children: line } })),
                 },
               },

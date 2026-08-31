@@ -1,0 +1,29 @@
+---
+import { t, localePath, EMAIL, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale);
+const home = localePath(locale);
+---
+
+<footer class="flex flex-col items-start gap-3.5 px-5 pt-7 pb-9 md:flex-row md:items-center md:justify-between md:gap-6 md:px-16 md:py-6.5 border-t border-line">
+  <a class="flex items-center gap-2.5 font-mono text-[13px] font-bold tracking-[0.1em]" href={home}>
+    <svg class="text-primary" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true">
+      <rect width="8" height="8" fill="currentColor"></rect>
+    </svg>
+    <span>YOKU</span>
+  </a>
+  <nav class="flex items-center gap-7 font-mono text-xs">
+    <a class="link link-hover text-muted hover:text-base-content" href={`${home}#services`}>{s.navServices}</a>
+    <a class="link link-hover text-muted hover:text-base-content" href={`${home}#report`}>{s.navReport}</a>
+    <a class="link link-hover text-muted hover:text-base-content" href={`${home}#contact`}>{s.navContact}</a>
+  </nav>
+  <div class="flex items-center justify-between w-full md:w-auto md:justify-start gap-5 font-mono text-xs">
+    <a class="link link-hover text-muted hover:text-base-content" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+    <span class="text-dim">{s.copyright}</span>
+  </div>
+</footer>

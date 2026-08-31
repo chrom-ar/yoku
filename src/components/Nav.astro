@@ -1,5 +1,5 @@
 ---
-import { t, mailto, localePath, otherLocale, EMAIL, type Locale } from '../i18n/ui';
+import { t, mailto, localePath, otherLocale, type Locale } from '../i18n/ui';
 
 interface Props {
   locale: Locale;
@@ -8,20 +8,27 @@ interface Props {
 const { locale } = Astro.props;
 const s = t(locale);
 const other = otherLocale(locale);
+const home = localePath(locale);
 ---
 
 <header class="navbar min-h-0 h-14 md:h-16 px-5 md:px-16 border-b border-line justify-between gap-4">
-  <a class="flex items-center gap-2.5 font-mono text-sm md:text-[15px] font-bold tracking-[0.1em]" href={localePath(locale)}>
+  <a class="flex items-center gap-2.5 font-mono text-sm md:text-[15px] font-bold tracking-[0.1em]" href={home}>
     <svg class="text-primary" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
       <rect width="10" height="10" fill="currentColor"></rect>
     </svg>
     <span>YOKU</span>
   </a>
-  <nav class="flex items-center gap-5 md:gap-8 font-mono text-[13px] tracking-[0.02em]">
-    <a class="link link-hover text-muted hover:text-base-content hidden md:inline" href={`mailto:${EMAIL}`} data-nav="contact">{s.contact}</a>
+  <nav class="flex items-center gap-4 md:gap-7 font-mono text-xs md:text-[13px] tracking-[0.02em]">
+    <a class="link link-hover text-muted hover:text-base-content hidden md:inline" href={`${home}#services`} data-nav="services">{s.navServices}</a>
+    <a class="link link-hover text-muted hover:text-base-content hidden md:inline" href={`${home}#report`} data-nav="report">{s.navReport}</a>
+    <a class="link link-hover text-muted hover:text-base-content hidden md:inline" href={`${home}#contact`} data-nav="contact">{s.navContact}</a>
+    <span class="hidden md:block w-px h-3.5 bg-line2" aria-hidden="true"></span>
     <a class="link link-hover text-muted hover:text-base-content" href={localePath(other)} hreflang={other} lang={other} data-lang={other}>{s.switchLabel}</a>
   </nav>
-  <a class="btn btn-primary btn-sm md:btn-md font-mono font-semibold" href={mailto(s.ctaSubject)} data-nav="cta">{s.cta}</a>
+  <a class="btn btn-primary btn-sm md:btn-md font-mono font-semibold" href={mailto(s.ctaSubject)} data-nav="cta">
+    <span class="hidden md:inline" data-cta="long">{s.cta}</span>
+    <span class="md:hidden" data-cta="short">{s.ctaShort}</span>
+  </a>
 </header>
 
 <script>

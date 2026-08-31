@@ -49,7 +49,7 @@ const es = ui.es;
   is:inline
   define:vars={{
     es: { eyebrow: es.notFoundEyebrow, headline: es.notFoundHeadline, sub: es.notFoundSub, home: es.notFoundHome, title: es.notFoundTitle },
-    nav: { contact: es.contact, cta: es.cta, ctaHref: mailto(es.ctaSubject), switchLabel: 'EN', switchHref: localePath('en') },
+    nav: { services: es.navServices, report: es.navReport, contact: es.navContact, cta: es.cta, ctaShort: es.ctaShort, ctaHref: mailto(es.ctaSubject), switchLabel: 'EN', switchHref: localePath('en') },
   }}
 >
   (function () {
@@ -67,10 +67,18 @@ const es = ui.es;
         target.textContent = es[key];
         if (n.dataset.homeEs) n.setAttribute('href', n.dataset.homeEs);
       });
-      var contact = document.querySelector('[data-nav="contact"]');
-      if (contact) contact.textContent = nav.contact;
+      ['services', 'report', 'contact'].forEach(function (key) {
+        var link = document.querySelector('[data-nav="' + key + '"]');
+        if (link) link.textContent = nav[key];
+      });
       var cta = document.querySelector('[data-nav="cta"]');
-      if (cta) { cta.textContent = nav.cta; cta.setAttribute('href', nav.ctaHref); }
+      if (cta) {
+        cta.setAttribute('href', nav.ctaHref);
+        var long = cta.querySelector('[data-cta="long"]');
+        var short = cta.querySelector('[data-cta="short"]');
+        if (long) long.textContent = nav.cta;
+        if (short) short.textContent = nav.ctaShort;
+      }
       var sw = document.querySelector('a[data-lang]');
       if (sw) { sw.textContent = nav.switchLabel; sw.setAttribute('href', nav.switchHref); sw.setAttribute('hreflang', 'en'); sw.setAttribute('lang', 'en'); sw.dataset.lang = 'en'; }
     } catch (e) {}

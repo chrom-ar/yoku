@@ -2,9 +2,9 @@
 import { EMAIL } from '../i18n/ui';
 ---
 
-<footer class="flex items-center gap-2.5 md:gap-3.5 px-5 py-3 md:px-16 md:py-3.5 border-t border-line font-mono text-[11.5px] md:text-[12.5px] text-muted tracking-[0.02em] whitespace-nowrap overflow-hidden">
+<div class="flex items-center gap-2.5 md:gap-3.5 px-5 py-3 md:px-16 md:py-3.5 border-y border-line font-mono text-[11.5px] md:text-[12.5px] text-muted tracking-[0.02em] whitespace-nowrap overflow-hidden">
   <span class="text-primary">yoku@ops:~$</span>
   <span>scope --web --api --cloud<span class="hidden md:inline"> --network --red-team</span></span>
   <span class="cursor-blink block w-[7px] h-[13px] md:w-2 md:h-3.5 bg-primary" aria-hidden="true"></span>
   <a class="link link-hover ml-auto hidden md:inline text-muted hover:text-base-content" href={`mailto:${EMAIL}`}>{EMAIL}</a>
-</footer>
+</div>

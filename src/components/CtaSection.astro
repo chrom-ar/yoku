@@ -1,0 +1,22 @@
+---
+import Arrow from './Arrow.astro';
+import { t, mailto, EMAIL, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale);
+---
+
+<section class="flex flex-col items-start gap-4.5 px-5 py-14 md:flex-row md:items-center md:justify-between md:gap-12 md:px-16 md:py-18 border-t border-line" id="contact">
+  <h2 class="m-0 font-mono text-[33px] md:text-[44px] leading-[1.05] md:leading-[1.02] font-semibold tracking-[-0.035em] text-balance">{s.ctaHead}</h2>
+  <div class="flex flex-col items-stretch self-stretch gap-3.5 md:flex-row md:items-center md:self-auto md:gap-6 md:flex-none">
+    <a class="btn btn-primary btn-lg font-mono font-semibold justify-center" href={mailto(s.ctaSubject)}>
+      <span>{s.cta}</span>
+      <Arrow />
+    </a>
+    <a class="link link-hover self-start font-mono text-[13px] md:text-sm text-muted hover:text-base-content" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+  </div>
+</section>

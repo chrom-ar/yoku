@@ -1,0 +1,25 @@
+---
+import { t, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale);
+---
+
+<section class="flex flex-col gap-6 md:gap-9 px-5 pt-13 pb-11 md:px-16 md:pt-18 md:pb-16" id="services">
+  <div class="flex flex-col items-start gap-3.5 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+    <h2 class="m-0 font-mono text-[29px] md:text-4xl leading-[1.08] md:leading-[1.05] font-medium tracking-[-0.03em] text-balance">{s.servicesHead}</h2>
+    <p class="m-0 font-mono text-[11.5px] md:text-[12.5px] leading-relaxed text-dim lg:max-w-[360px] lg:text-right">{s.servicesNote}</p>
+  </div>
+  <div class="grid grid-cols-1 gap-4.5 md:grid-cols-2 md:gap-8 xl:grid-cols-4">
+    {s.services.map((svc) => (
+      <article class="flex flex-col gap-2 md:gap-2.5 pt-4 md:pt-5 border-t border-line2">
+        <h3 class="m-0 font-mono text-[16.5px] md:text-lg font-semibold leading-snug tracking-[-0.01em]">{svc.title}</h3>
+        <p class="m-0 text-sm md:text-[14.5px] leading-[1.55] text-muted">{svc.body}</p>
+      </article>
+    ))}
+  </div>
+</section>

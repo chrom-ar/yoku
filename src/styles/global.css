@@ -47,7 +47,24 @@
   --font-mono: var(--font-jetbrains-mono);
   --color-muted: #8b8b94;
   --color-dim: #5c5c66;
+  --color-soft: #a1a1aa;
+  --color-body: #d4d4d8;
   --color-line: rgb(255 255 255 / 0.08);
+  --color-line2: rgb(255 255 255 / 0.14);
+  --color-card: #101013;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgb(243 185 66 / 0.28);
+  color: #0a0a0c;
+}
+
+section[id] {
+  scroll-margin-top: 1rem;
 }
 
 html,
@@ -72,4 +89,5 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .cursor-blink { animation: none; }
+  html { scroll-behavior: auto; }
 }
