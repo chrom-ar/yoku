@@ -1,5 +1,6 @@
 ---
 import Arrow from './Arrow.astro';
+import QuietLink from './QuietLink.astro';
 import GlyphSphere from './GlyphSphere.astro';
 import { t, mailto, type Locale } from '../i18n/ui';
 
@@ -22,11 +23,11 @@ const s = t(locale);
     <h1 class="m-0 font-mono font-semibold text-[46px] md:text-[64px] xl:text-[80px] leading-[0.98] tracking-[-0.035em] text-balance">{s.headline}</h1>
     <p class="m-0 text-base md:text-[19px] leading-normal md:leading-[1.55] text-soft max-w-[540px] text-pretty">{s.sub}</p>
     <div class="flex flex-col items-stretch gap-3.5 md:flex-row md:items-center md:gap-6 md:flex-wrap mt-2">
-      <a class="btn btn-primary btn-lg font-mono font-semibold justify-center" href={mailto(s.ctaSubject)}>
+      <a class="btn btn-primary h-[52px] px-[22px] text-sm font-mono font-semibold justify-center" href={mailto(s.ctaSubject)}>
         <span>{s.cta}</span>
         <Arrow />
       </a>
-      <a class="link link-hover self-start font-mono text-[13px] md:text-sm text-muted hover:text-base-content" href="#report">{s.seeReport}</a>
+      <QuietLink href="#report" class="self-start md:self-auto">{s.seeReport}</QuietLink>
     </div>
   </div>
   <GlyphSphere label={s.sphereLabel} />

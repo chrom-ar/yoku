@@ -19,13 +19,13 @@ const home = localePath(locale);
     <span>YOKU</span>
   </a>
   <nav class="flex items-center gap-4 md:gap-7 font-mono text-xs md:text-[13px] tracking-[0.02em]">
-    <a class="link link-hover text-muted hover:text-base-content hidden md:inline" href={`${home}#services`} data-nav="services">{s.navServices}</a>
-    <a class="link link-hover text-muted hover:text-base-content hidden md:inline" href={`${home}#report`} data-nav="report">{s.navReport}</a>
-    <a class="link link-hover text-muted hover:text-base-content hidden md:inline" href={`${home}#contact`} data-nav="contact">{s.navContact}</a>
+    <a class="text-muted hover:text-base-content transition-colors hidden md:inline" href={`${home}#services`} data-nav="services">{s.navServices}</a>
+    <a class="text-muted hover:text-base-content transition-colors hidden md:inline" href={`${home}#report`} data-nav="report">{s.navReport}</a>
+    <a class="text-muted hover:text-base-content transition-colors hidden md:inline" href={`${home}#contact`} data-nav="contact">{s.navContact}</a>
     <span class="hidden md:block w-px h-3.5 bg-line2" aria-hidden="true"></span>
-    <a class="link link-hover text-muted hover:text-base-content" href={localePath(other)} hreflang={other} lang={other} data-lang={other}>{s.switchLabel}</a>
+    <a class="text-muted hover:text-base-content transition-colors" href={localePath(other)} hreflang={other} lang={other} data-lang={other}>{s.switchLabel}</a>
   </nav>
-  <a class="btn btn-primary btn-sm md:btn-md font-mono font-semibold" href={mailto(s.ctaSubject)} data-nav="cta">
+  <a class="btn btn-primary h-10 px-3.5 text-xs md:h-11 md:px-[18px] md:text-[13px] font-mono font-semibold" href={mailto(s.ctaSubject)} data-nav="cta">
     <span class="hidden md:inline" data-cta="long">{s.cta}</span>
     <span class="md:hidden" data-cta="short">{s.ctaShort}</span>
   </a>

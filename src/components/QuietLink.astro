@@ -1,0 +1,17 @@
+---
+// The sample's `.quiet` link: persistent hairline underline, muted until hover.
+interface Props {
+  href: string;
+  class?: string;
+}
+
+const { href, class: className = '' } = Astro.props;
+---
+
+<a
+  class:list={[
+    'font-mono text-[13px] md:text-sm leading-normal text-muted hover:text-base-content',
+    'border-b border-white/18 hover:border-base-content pb-[2px] transition-colors',
+    className,
+  ]}
+  href={href}><slot /></a>
