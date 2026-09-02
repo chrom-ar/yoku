@@ -12,22 +12,22 @@ const { locale } = Astro.props;
 const s = t(locale);
 ---
 
-<section class="flex flex-col gap-5 px-5 pt-9 pb-7 md:grid md:grid-cols-1 lg:grid-cols-[minmax(0,1fr)_520px] xl:grid-cols-[minmax(0,1fr)_640px] md:gap-12 md:items-center md:px-16 md:pt-16 md:pb-12">
-  <div class="flex flex-col gap-5 md:gap-7 md:max-w-[620px]">
-    <p class="flex items-center gap-2.5 md:gap-3 m-0 font-mono text-[11px] md:text-xs tracking-[0.12em] uppercase text-muted">
+<section class="flex flex-col gap-5 px-5 pt-9 pb-7 sm:grid sm:grid-cols-1 sm:gap-12 sm:items-center sm:px-16 sm:pt-16 sm:pb-12 w980:grid-cols-[minmax(0,1fr)_520px] xl:grid-cols-[minmax(0,1fr)_640px]">
+  <div class="flex flex-col gap-5 sm:gap-7 sm:max-w-[620px]">
+    <p class="flex items-center gap-2.5 sm:gap-3 m-0 font-mono text-[11px] sm:text-xs tracking-[0.12em] uppercase text-muted">
       <svg class="text-primary" width="6" height="6" viewBox="0 0 6 6" aria-hidden="true">
         <circle cx="3" cy="3" r="3" fill="currentColor"></circle>
       </svg>
       <span>{s.eyebrow}</span>
     </p>
-    <h1 class="m-0 font-mono font-semibold text-[46px] md:text-[64px] xl:text-[80px] leading-[0.98] tracking-[-0.035em] text-balance">{s.headline}</h1>
-    <p class="m-0 text-base md:text-[19px] leading-normal md:leading-[1.55] text-soft max-w-[540px] text-pretty">{s.sub}</p>
-    <div class="flex flex-col items-stretch gap-3.5 md:flex-row md:items-center md:gap-6 md:flex-wrap mt-2">
-      <a class="btn btn-primary h-[52px] px-[22px] text-sm font-mono font-semibold justify-center" href={mailto(s.ctaSubject)}>
+    <h1 class="m-0 font-mono font-semibold text-[46px] sm:text-[64px] xl:text-[80px] leading-[0.98] tracking-[-0.035em] text-balance">{s.headline}</h1>
+    <p class="m-0 text-base sm:text-[19px] leading-normal sm:leading-[1.55] text-soft max-w-[540px] text-pretty">{s.sub}</p>
+    <div class="flex flex-col items-stretch gap-3.5 sm:flex-row sm:items-center sm:gap-6 sm:flex-wrap mt-2">
+      <a class="btn btn-primary h-[52px] gap-2.5 px-[22px] text-sm font-mono font-semibold justify-center" href={mailto(s.ctaSubject)}>
         <span>{s.cta}</span>
         <Arrow />
       </a>
-      <QuietLink href="#report" class="self-start md:self-auto">{s.seeReport}</QuietLink>
+      <QuietLink href="#report" class="self-start sm:self-auto">{s.seeReport}</QuietLink>
     </div>
   </div>
   <GlyphSphere label={s.sphereLabel} />

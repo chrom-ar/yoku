@@ -11,24 +11,24 @@ const other = otherLocale(locale);
 const home = localePath(locale);
 ---
 
-<header class="navbar min-h-0 h-14 md:h-16 px-5 md:px-16 border-b border-line justify-between gap-4">
-  <a class="flex items-center gap-2.5 font-mono text-sm md:text-[15px] font-bold tracking-[0.1em]" href={home}>
-    <svg class="text-primary" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+<header class="navbar min-h-0 h-14 sm:h-16 px-5 sm:px-16 border-b border-line justify-between gap-4">
+  <a class="flex items-center gap-[9px] sm:gap-2.5 font-mono text-sm sm:text-[15px] font-bold tracking-[0.1em]" href={home}>
+    <svg class="text-primary w-[9px] h-[9px] sm:w-2.5 sm:h-2.5" viewBox="0 0 10 10" aria-hidden="true">
       <rect width="10" height="10" fill="currentColor"></rect>
     </svg>
     <span>YOKU</span>
   </a>
-  <nav class="flex items-center gap-4 md:gap-7 font-mono text-xs md:text-[13px] tracking-[0.02em]">
-    <a class="text-muted hover:text-base-content transition-colors hidden md:inline" href={`${home}#services`} data-nav="services">{s.navServices}</a>
-    <a class="text-muted hover:text-base-content transition-colors hidden md:inline" href={`${home}#report`} data-nav="report">{s.navReport}</a>
-    <a class="text-muted hover:text-base-content transition-colors hidden md:inline" href={`${home}#pricing`} data-nav="pricing">{s.navPricing}</a>
-    <a class="text-muted hover:text-base-content transition-colors hidden md:inline" href={`${home}#contact`} data-nav="contact">{s.navContact}</a>
-    <span class="hidden md:block w-px h-3.5 bg-line2" aria-hidden="true"></span>
+  <nav class="flex items-center gap-4 sm:gap-7 font-mono text-xs sm:text-[13px] tracking-[0.02em]">
+    <a class="text-muted hover:text-base-content transition-colors hidden sm:inline" href={`${home}#services`} data-nav="services">{s.navServices}</a>
+    <a class="text-muted hover:text-base-content transition-colors hidden sm:inline" href={`${home}#report`} data-nav="report">{s.navReport}</a>
+    <a class="text-muted hover:text-base-content transition-colors hidden sm:inline" href={`${home}#pricing`} data-nav="pricing">{s.navPricing}</a>
+    <a class="text-muted hover:text-base-content transition-colors hidden sm:inline" href={`${home}#contact`} data-nav="contact">{s.navContact}</a>
+    <span class="hidden sm:block w-px h-3.5 bg-line2" aria-hidden="true"></span>
     <a class="text-muted hover:text-base-content transition-colors" href={localePath(other)} hreflang={other} lang={other} data-lang={other}>{s.switchLabel}</a>
   </nav>
-  <a class="btn btn-primary h-10 px-3.5 text-xs md:h-11 md:px-[18px] md:text-[13px] font-mono font-semibold" href={mailto(s.ctaSubject)} data-nav="cta">
-    <span class="hidden md:inline" data-cta="long">{s.cta}</span>
-    <span class="md:hidden" data-cta="short">{s.ctaShort}</span>
+  <a class="btn btn-primary h-10 px-3.5 text-xs sm:h-11 sm:px-[18px] sm:text-[13px] font-mono font-semibold" href={mailto(s.ctaSubject)} data-nav="cta">
+    <span class="hidden sm:inline" data-cta="long">{s.cta}</span>
+    <span class="sm:hidden" data-cta="short">{s.ctaShort}</span>
   </a>
 </header>
 

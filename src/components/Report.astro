@@ -11,45 +11,45 @@ const s = t(locale);
 const f = s.finding;
 ---
 
-<section class="grid grid-cols-1 gap-5 px-5 py-13 md:gap-14 md:p-16 xl:grid-cols-[minmax(0,1fr)_560px] xl:items-center border-t border-line" id="report">
-  <div class="flex flex-col gap-4.5 md:gap-5.5 md:max-w-[540px]">
-    <h2 class="m-0 font-mono text-[29px] md:text-4xl leading-[1.08] md:leading-[1.05] font-medium tracking-[-0.03em] text-balance">{s.reportHead}</h2>
+<section class="grid grid-cols-1 gap-5 px-5 py-13 sm:gap-14 sm:p-16 w1180:grid-cols-[minmax(0,1fr)_560px] w1180:items-center border-t border-line" id="report">
+  <div class="flex flex-col gap-4.5 sm:gap-5.5 sm:max-w-[540px]">
+    <h2 class="m-0 font-mono text-[29px] sm:text-4xl leading-[1.08] sm:leading-[1.05] font-medium tracking-[-0.03em] text-balance">{s.reportHead}</h2>
     <div class="flex flex-col border-t border-white/10">
       {s.reportChecks.map((check) => (
-        <div class="flex items-start gap-3 md:gap-[13px] py-2.5 md:py-3 border-b border-white/10">
+        <div class="flex items-start gap-3 sm:gap-[13px] py-2.5 sm:py-3 border-b border-white/10">
           <svg class="flex-none mt-[3px] text-primary" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M3 8.5l3 3 7-7"></path>
           </svg>
-          <span class="text-[13.5px] md:text-[15px] leading-normal text-body">{check}</span>
+          <span class="text-[13.5px] sm:text-[15px] leading-normal text-body">{check}</span>
         </div>
       ))}
     </div>
     <QuietLink href={mailto(s.sampleSubject)} class="self-start">{s.sample}</QuietLink>
   </div>
-  <div class="card rounded-md bg-card border border-white/12 overflow-hidden max-w-[640px] xl:w-[560px]">
-    <div class="flex items-center justify-between px-3.5 py-[11px] md:px-4.5 md:py-3 border-b border-line font-mono text-[10.5px] md:text-xs tracking-[0.06em] text-muted">
+  <div class="card rounded-md bg-card border border-white/12 overflow-hidden max-w-[640px] w1180:w-[560px]">
+    <div class="flex items-center justify-between px-3.5 py-[11px] sm:px-4.5 sm:py-3 border-b border-line font-mono text-[10.5px] sm:text-xs tracking-[0.06em] text-muted">
       <span>{f.head}</span>
-      <span class="badge badge-outline badge-sm border-dashed border-white/25 text-muted rounded-[3px] text-[9px] md:text-[10px] tracking-[0.14em]">{f.tag}</span>
+      <span class="badge badge-outline badge-sm border-dashed border-white/25 text-muted rounded-[3px] text-[9px] sm:text-[10px] tracking-[0.14em]">{f.tag}</span>
     </div>
-    <div class="flex flex-col gap-3 md:gap-3.5 px-3.5 py-4 md:px-4.5 md:py-5">
+    <div class="flex flex-col gap-3 sm:gap-3.5 px-3.5 py-4 sm:px-4.5 sm:py-5">
       <div class="flex items-center gap-3 flex-wrap font-mono">
-        <span class="badge badge-soft badge-error badge-sm rounded-[3px] text-[10px] md:text-[11px] font-semibold tracking-[0.1em]">{f.severity}</span>
-        <span class="text-[11px] md:text-xs text-muted">CVSS 9.1</span>
-        <span class="text-[11px] md:text-xs text-muted">CWE-639</span>
+        <span class="badge badge-soft badge-error badge-sm rounded-[3px] text-[10px] sm:text-[11px] font-semibold tracking-[0.1em]">{f.severity}</span>
+        <span class="text-[11px] sm:text-xs text-muted">CVSS 9.1</span>
+        <span class="text-[11px] sm:text-xs text-muted">CWE-639</span>
       </div>
-      <h3 class="m-0 font-mono text-[15px] md:text-[17px] font-semibold leading-[1.35]">{f.title}</h3>
-      <div class="font-mono text-[11px] md:text-[12.5px] px-2.5 py-2 md:px-[11px] md:py-[9px] bg-base-100 border border-line rounded text-primary overflow-x-auto whitespace-nowrap">{f.endpoint}</div>
-      <p class="m-0 text-[13px] md:text-sm leading-[1.55] text-soft">{f.desc}</p>
-      <div class="flex flex-col gap-[3px] font-mono text-[11px] md:text-xs leading-[1.65] text-muted">
+      <h3 class="m-0 font-mono text-[15px] sm:text-[17px] font-semibold leading-[1.35]">{f.title}</h3>
+      <div class="font-mono text-[11px] sm:text-[12.5px] px-2.5 py-2 sm:px-[11px] sm:py-[9px] bg-base-100 border border-line rounded text-primary overflow-x-auto whitespace-nowrap">{f.endpoint}</div>
+      <p class="m-0 text-[13px] sm:text-sm leading-[1.55] text-soft">{f.desc}</p>
+      <div class="flex flex-col gap-[3px] font-mono text-[11px] sm:text-xs leading-[1.65] text-muted">
         <span class="text-dim">{f.reproLabel}</span>
         {f.repro.map((step) => <span>{step}</span>)}
       </div>
-      <div class="flex flex-col gap-[3px] font-mono text-[11px] md:text-xs leading-[1.65] text-muted">
+      <div class="flex flex-col gap-[3px] font-mono text-[11px] sm:text-xs leading-[1.65] text-muted">
         <span class="text-dim">{f.fixLabel}</span>
         <span>{f.fix}</span>
       </div>
     </div>
-    <div class="flex items-center gap-2.5 px-3.5 py-2.5 md:px-4.5 md:py-[11px] border-t border-line font-mono text-[10.5px] md:text-[11.5px] text-muted">
+    <div class="flex items-center gap-2.5 px-3.5 py-2.5 sm:px-4.5 sm:py-[11px] border-t border-line font-mono text-[10.5px] sm:text-[11.5px] text-muted">
       <span class="status status-error" aria-hidden="true"></span>
       <span>{f.status}</span>
     </div>

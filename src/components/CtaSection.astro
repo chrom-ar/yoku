@@ -11,13 +11,13 @@ const { locale } = Astro.props;
 const s = t(locale);
 ---
 
-<section class="flex flex-col items-start gap-6 px-5 py-14 md:px-16 md:py-18 lg:flex-row lg:items-center lg:justify-between lg:gap-12 border-t border-line" id="contact">
-  <h2 class="m-0 font-mono text-[33px] md:text-[44px] leading-[1.05] md:leading-[1.02] font-semibold tracking-[-0.035em] text-balance">{s.ctaHead}</h2>
-  <div class="flex flex-col items-stretch self-stretch gap-3.5 md:flex-row md:items-center md:self-auto md:gap-6 lg:flex-none">
-    <a class="btn btn-primary h-[52px] px-[22px] text-sm font-mono font-semibold justify-center" href={mailto(s.ctaSubject)}>
+<section class="flex flex-col items-start gap-[18px] px-5 py-14 sm:gap-6 sm:px-16 sm:py-18 w980:flex-row w980:items-center w980:justify-between w980:gap-12 border-t border-line" id="contact">
+  <h2 class="m-0 font-mono text-[33px] sm:text-[44px] leading-[1.05] sm:leading-[1.02] font-semibold tracking-[-0.035em] text-balance">{s.ctaHead}</h2>
+  <div class="flex flex-col items-stretch self-stretch gap-3.5 sm:flex-row sm:items-center sm:self-auto sm:gap-6 w980:flex-none">
+    <a class="btn btn-primary h-[52px] gap-2.5 px-[22px] text-sm font-mono font-semibold justify-center" href={mailto(s.ctaSubject)}>
       <span>{s.cta}</span>
       <Arrow />
     </a>
-    <QuietLink href={`mailto:${EMAIL}`} class="self-start md:self-center">{EMAIL}</QuietLink>
+    <QuietLink href={`mailto:${EMAIL}`} class="self-start sm:self-center">{EMAIL}</QuietLink>
   </div>
 </section>

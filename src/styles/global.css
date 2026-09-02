@@ -43,6 +43,18 @@
 }
 
 @theme {
+  /* Full breakpoint scale, ascending. The design switches layout at 640,
+     980, 1180 and 1280px, so sm/w980/w1180/xl sit one pixel above each of
+     those. Declared in order: Tailwind emits the media queries in the order
+     the keys appear, and later ones must win. */
+  --breakpoint-sm: 40.0625rem; /* 641px — above the design's mobile cutoff */
+  --breakpoint-md: 48rem; /* 768px */
+  --breakpoint-w980: 61.3125rem; /* 981px */
+  --breakpoint-lg: 64rem; /* 1024px */
+  --breakpoint-w1180: 73.8125rem; /* 1181px */
+  --breakpoint-xl: 80.0625rem; /* 1281px */
+  --breakpoint-2xl: 96rem; /* 1536px */
+
   --font-sans: var(--font-instrument-sans);
   --font-mono: var(--font-jetbrains-mono);
   --color-muted: #8b8b94;
@@ -75,6 +87,9 @@ body {
 body {
   color: var(--color-base-content);
   font-family: var(--font-sans);
+  /* The design leans on each font's natural metrics; every block that needs
+     a specific rhythm sets its own leading. */
+  line-height: normal;
   -webkit-font-smoothing: antialiased;
 }
 

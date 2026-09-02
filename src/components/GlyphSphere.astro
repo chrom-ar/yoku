@@ -6,7 +6,7 @@ interface Props {
 const { label } = Astro.props;
 ---
 
-<div class="flex items-center justify-center w-[320px] h-[320px] mx-auto mt-3 md:w-[520px] md:h-[520px] xl:w-[640px] xl:h-[640px] md:justify-self-center lg:justify-self-end">
+<div class="flex items-center justify-center w-[320px] h-[320px] mx-auto mt-3 sm:w-[520px] sm:h-[520px] sm:mt-0 sm:justify-self-center xl:w-[640px] xl:h-[640px] w980:justify-self-end">
   <canvas id="glyph-sphere" class="block w-full h-full cursor-crosshair" width="640" height="640" role="img" aria-label={label}></canvas>
 </div>
 
@@ -165,7 +165,7 @@ const { label } = Astro.props;
     const root = getComputedStyle(document.documentElement);
     const accent = root.getPropertyValue('--color-primary').trim() || '#f3b942';
     const font = root.getPropertyValue('--font-jetbrains-mono').trim() || 'ui-monospace, monospace';
-    const small = window.matchMedia('(max-width: 767px)').matches;
+    const small = window.matchMedia('(max-width: 640px)').matches;
     createGlyphSphere(canvas, { accent, font, count: small ? 700 : 1200, speed: 1 });
   }
 </script>
