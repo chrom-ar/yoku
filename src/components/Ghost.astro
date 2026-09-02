@@ -1,0 +1,17 @@
+---
+// The sample's `.ghost` button: hairline outline, no fill on hover.
+interface Props {
+  href: string;
+  class?: string;
+}
+
+const { href, class: className = '' } = Astro.props;
+---
+
+<a
+  class:list={[
+    'btn btn-outline h-11 px-[18px] text-[13px] font-mono font-semibold rounded',
+    'border-white/18 text-base-content hover:bg-transparent hover:text-white hover:border-white/45',
+    className,
+  ]}
+  href={href}><slot /></a>

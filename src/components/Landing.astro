@@ -5,6 +5,7 @@ import Hero from './Hero.astro';
 import Prompt from './Prompt.astro';
 import Services from './Services.astro';
 import Report from './Report.astro';
+import Pricing from './Pricing.astro';
 import CtaSection from './CtaSection.astro';
 import Footer from './Footer.astro';
 import { t, type Locale } from '../i18n/ui';
@@ -24,6 +25,7 @@ const s = t(locale);
     <Prompt />
     <Services locale={locale} />
     <Report locale={locale} />
+    <Pricing locale={locale} />
     <CtaSection locale={locale} />
   </main>
   <Footer locale={locale} />
