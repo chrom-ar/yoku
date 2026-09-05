@@ -1,53 +1,72 @@
-name: Deploy to GitHub Pages
+name: Deploy
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+env:
+  NODE_VERSION: '24.x'
+  OUTPUT_DIR: 'dist'
+  BUCKET: 'yoku.chrom.ar'
 
 concurrency:
-  group: pages
+  group: deploy
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Set up Node
+      - name: Setup
         uses: actions/setup-node@v7
         with:
-          node-version: 24
-          cache: npm
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
 
-      - name: Install dependencies
+      - name: Dependencies
         run: npm ci
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v6
+      - name: Check
+        run: npx astro check
 
+      # The `prebuild` script renders the OG cards and the touch icon into
+      # public/ before Astro copies it, so they ship with the build.
       - name: Build
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
+      - name: Configure
+        uses: aws-actions/configure-aws-credentials@v6
         with:
-          path: dist
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v5
+        run: |
+          # Everything under _astro/ is content-hashed, so it can be cached
+          # forever. The --exclude/--include filters apply to the destination
+          # too, so --delete only ever prunes within the set being synced.
+          aws s3 sync ./${{ env.OUTPUT_DIR }}/ s3://${{ env.BUCKET }}/ \
+            --delete \
+            --cache-control "public, max-age=31536000, immutable" \
+            --exclude "*" \
+            --include "_astro/*"
+
+          # Everything else keeps a stable path across deploys — the pages, the
+          # OG cards and the icons — so it must revalidate.
+          aws s3 sync ./${{ env.OUTPUT_DIR }}/ s3://${{ env.BUCKET }}/ \
+            --delete \
+            --cache-control "public, max-age=0, must-revalidate" \
+            --exclude "_astro/*"
+
+      - name: Cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
