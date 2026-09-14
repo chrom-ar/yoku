@@ -71,11 +71,11 @@ export const ui = {
       tiers: [
         { name: 'Essential', price: 'USD 2,900', scope: '1 web app or API', roles: 'up to 2', testing: '4\u20135 days', retest: 'criticals \u00b7 30 days', cta: 'Book', ctaSubject: 'Essential pentest' },
         { name: 'Standard', price: 'USD 5,900', scope: 'Web app + API', roles: 'up to 4', testing: '8\u201310 days', retest: 'full \u00b7 60 days', cta: 'Book', ctaSubject: 'Standard pentest' },
-        { name: 'Advanced', price: 'from USD 9,500', scope: 'Web + API + cloud or network', roles: 'unlimited', testing: '12\u201315 days', retest: 'full \u00b7 90 days', cta: 'Get a quote', ctaSubject: 'Advanced pentest' },
+        { name: 'Advanced', price: 'from USD 9,500', scope: 'Web + API + cloud or network', roles: 'up to 10', testing: '12\u201315 days', retest: 'full \u00b7 90 days', cta: 'Get a quote', ctaSubject: 'Advanced pentest' },
       ],
       cont: {
         head: 'Continuous',
-        copy: 'Yearly pentest, re-assessment at month 6, unlimited retests. One fixed monthly fee.',
+        copy: 'Yearly pentest, re-assessment at month 6, a Flash diagnostic every month. One fixed monthly fee.',
         prices: [
           { label: 'Essential', price: 'USD 450/mo' },
           { label: 'Standard', price: 'USD 990/mo' },
@@ -160,11 +160,11 @@ export const ui = {
       tiers: [
         { name: 'Esencial', price: 'USD 2.900', scope: '1 web app o API', roles: 'hasta 2', testing: '4\u20135 días', retest: 'críticos \u00b7 30 días', cta: 'Reservar', ctaSubject: 'Pentest Esencial' },
         { name: 'Estándar', price: 'USD 5.900', scope: 'Web app + API', roles: 'hasta 4', testing: '8\u201310 días', retest: 'completo \u00b7 60 días', cta: 'Reservar', ctaSubject: 'Pentest Estándar' },
-        { name: 'Avanzado', price: 'desde USD 9.500', scope: 'Web + API + cloud o red', roles: 'sin límite', testing: '12\u201315 días', retest: 'completo \u00b7 90 días', cta: 'Cotizar', ctaSubject: 'Pentest Avanzado' },
+        { name: 'Avanzado', price: 'desde USD 9.500', scope: 'Web + API + cloud o red', roles: 'hasta 10', testing: '12\u201315 días', retest: 'completo \u00b7 90 días', cta: 'Cotizar', ctaSubject: 'Pentest Avanzado' },
       ],
       cont: {
         head: 'Continuo',
-        copy: 'Pentest anual, re-evaluación a los 6 meses, retests ilimitados. Una cuota mensual fija.',
+        copy: 'Pentest anual, re-evaluación a los 6 meses, un Diagnóstico Flash cada mes. Una cuota mensual fija.',
         prices: [
           { label: 'Esencial', price: 'USD 450/mes' },
           { label: 'Estándar', price: 'USD 990/mes' },
