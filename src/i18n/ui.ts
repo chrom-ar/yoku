@@ -75,7 +75,7 @@ export const ui = {
       ],
       cont: {
         head: 'Continuous',
-        copy: 'Yearly pentest, re-assessment at month 6, a Flash diagnostic every month. One fixed monthly fee.',
+        copy: 'Yearly pentest, a Flash diagnostic every month, plus a re-assessment at month 6. One fixed monthly fee.',
         prices: [
           { label: 'Essential', price: 'USD 450/mo' },
           { label: 'Standard', price: 'USD 990/mo' },
@@ -164,7 +164,7 @@ export const ui = {
       ],
       cont: {
         head: 'Continuo',
-        copy: 'Pentest anual, re-evaluación a los 6 meses, un Diagnóstico Flash cada mes. Una cuota mensual fija.',
+        copy: 'Pentest anual, un Diagnóstico Flash cada mes, más una re-evaluación a los 6 meses. Una cuota mensual fija.',
         prices: [
           { label: 'Esencial', price: 'USD 450/mes' },
           { label: 'Estándar', price: 'USD 990/mes' },
